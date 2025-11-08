@@ -52,7 +52,7 @@ export function Blogs() {
               INSIGHTS
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-medium mb-6 leading-tight">
+          <h2 className="text-4xl md:text-6xl font-medium mb-6 leading-tight">
             Latest <span className="italic font-['Instrument_Serif']">thoughts</span> from
             <br />
             the studio.
