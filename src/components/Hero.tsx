@@ -54,35 +54,35 @@ export function Hero() {
         </div>
 
         {/* Desktop Video */}
-        <motion.div
-          style={{ y: videoY }}
-          className="absolute inset-0 z-10 will-change-transform hidden md:block"
-        >
-          <video
-            src="https://limitless-framer-template.s3.us-east-005.backblazeb2.com/Abstract+Objects.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className="w-full h-full object-cover"
-          />
+<motion.div
+  style={{ y: videoY }}
+  className="absolute inset-0 z-10 will-change-transform hidden md:flex items-center justify-center"
+>
+  <video
+    src="https://limitless-framer-template.s3.us-east-005.backblazeb2.com/Abstract+Objects.mp4"
+    autoPlay
+    loop
+    muted
+    playsInline
+    preload="auto"
+    className="w-4/5 max-w-[1400px] h-auto object-cover rounded-xl shadow-lg"
+  />
 
-          {/* Scalkit Text */}
-          <motion.div
-            style={{ opacity: logoOpacity }}
-            className="absolute inset-0 flex items-center justify-center"
-          >
-            <h1 className="text-7xl md:text-8xl lg:text-9xl font-['Instrument_Serif'] tracking-tight">
-              <span className="text-white font-['Instrument_Serif']">
-                S<span className="italic font-['Instrument_Serif']">c</span>al
-              </span>
-              <span className="text-gray-300/70 font-['Instrument_Serif']">
-                Kit
-              </span>
-            </h1>
-          </motion.div>
-        </motion.div>
+  {/* Scalkit Text */}
+  <motion.div
+    style={{ opacity: logoOpacity }}
+    className="absolute inset-0 flex items-center justify-center"
+  >
+    <h1 className="text-7xl md:text-8xl lg:text-9xl font-['Instrument_Serif'] tracking-tight">
+      <span className="text-white font-['Instrument_Serif']">
+        S<span className="italic font-['Instrument_Serif']">c</span>al
+      </span>
+      <span className="text-gray-300/70 font-['Instrument_Serif']">Kit</span>
+    </h1>
+  </motion.div>
+</motion.div>
+
+
 
         {/* Overlay */}
         <motion.div

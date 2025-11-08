@@ -112,7 +112,7 @@ export function Services() {
               </div>
 
               {/* Description */}
-              <p className="text-gray-300 text-lg md:text-xl leading-relaxed flex-1 hidden md:block z-10 max-w-2xl">
+              <p className="text-gray-300 text-lg md:text-lg leading-relaxed flex-1 hidden md:block z-10 max-w-2xl">
                 {service.description}
               </p>
               <p className="text-gray-400 text-base leading-relaxed mt-2 md:hidden z-10">
