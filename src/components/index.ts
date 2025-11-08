@@ -1,0 +1,12 @@
+export { Navbar } from './Navbar';
+export { Hero } from './Hero';
+export { Cards } from './Cards';
+export { Services } from './Services';
+export { WhyChooseUs } from './WhyChooseUs';
+export { HowWeWork } from './HowWeWork';
+export { Testimonials } from './Testimonials';
+export { Blogs } from './Blogs';
+export { FAQs } from './FAQs';
+export { ContactForm } from './ContactForm';
+export { BookingPage } from './BookingPage';
+export { Footer } from './Footer';
