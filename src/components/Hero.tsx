@@ -44,7 +44,7 @@ export function Hero() {
           scrub: 2,
           start: "top 100%", 
           end:"bottom 50%",
-          markers:true
+          // markers:true
         }
       })
     })
