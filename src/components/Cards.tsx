@@ -68,11 +68,11 @@ export function Cards() {
   const cardTransforms = [card1X, card2X, card3X, card4X];
 
   return (
-    <div className="max-w-7xl mx-auto px-6">
+    <div className="max-w-7xl mx-auto px-6 xl:pt-36 ">
       <section
         ref={sectionRef}
         id="about"
-        className="py-20 relative min-h-screen flex flex-col justify-center bg-black overflow-hidden"
+        className="relative min-h-screen flex flex-col justify-center bg-black overflow-hidden"
       >
         <div className="text-center mb-16">
           <div className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 mb-8">

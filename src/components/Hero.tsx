@@ -1,118 +1,100 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Link } from "react-router-dom";
+import { gsap } from 'gsap'  
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
 export function Hero() {
   const sectionRef = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
+  useGSAP(() => {
+    // animation for the video
+    if (window.innerWidth >= 1280) {
+    gsap.to(".hero_video_content", {
+        y:-800, // it actually overlapping the text
+        scrollTrigger: {
+            trigger: ".hero_video_content",
+            scrub: 2,
+            start: "top 125%", // starts early
+            end:"bottom 40%", // ends faster
+          },
+      });
 
-  // Map scrollYProgress to a linear Y transform
-  const videoYLinear = useTransform(scrollYProgress, [0, 1], ["100%", "0%"]);
+      // animation for text
+      gsap.to(".hero_text",{
+        y: -150,
+        scale: 0.9,
+          scrollTrigger: {
+            trigger: ".hero_text", // hero text as trigger
+            pin:true, // pin to show its overlapping effect
+            pinSpacing:false,
+            start: "top-=10 top", // start from the top top 
+            end: "50%  40%", // start text scrolling at 50%
+            scrub: true,
+          },
+      })
+    }
 
-  // Apply spring for smooth easing
-  const videoY = useSpring(videoYLinear, {
-    stiffness: 20,   // Lower = slower response, more easing
-    damping: 30,     // Higher = less bounce
-    mass: 1,
-  });
-
-  const overlayOpacity = useTransform(scrollYProgress, [0.2, 0.8], [0, 1]);
-  const logoOpacity = useTransform(scrollYProgress, [0.4, 0.8], [0, 1]);
+      // animation for text inside video
+      gsap.to(".hero_video_text",{
+        opacity:1,
+        scrollTrigger: {
+          trigger: ".hero_video_text",
+          scrub: 2,
+          start: "top 100%", 
+          end:"bottom 50%",
+          markers:true
+        }
+      })
+    })
 
   return (
-    <div className="relative w-full" id="home" ref={sectionRef}>
-      <section className="relative h-screen flex flex-col items-center justify-center text-center bg-black overflow-hidden px-4">
-        {/* Hero Text */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium text-white leading-snug mb-8 max-w-6xl mx-auto break-words whitespace-normal">
-          A Complete <span className="italic font-['Instrument_Serif']">System</span> for
-          Brands Ready to Scale.
-        </h1>
-
-        <p className="text-xl sm:text-2xl text-gray-400 font-medium mb-12 max-w-5xl mx-auto">
-          Using our extensive knowledge of design, technology, and strategy,
-          <br />
-          we build brands that grow without limits.
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-          <Link
-            to="/book-a-call"
-            className="bg-[#6214d9] hover:bg-[#6214d9]/90 text-white px-8 py-4 rounded-full text-lg transition-colors"
-          >
-            Book a Call
-          </Link>
-          <a
-            href="#services"
-            className="text-white hover:text-gray-300 px-8 py-4 text-lg transition-colors border border-gray-300/40 rounded-full"
-          >
-            View Services
-          </a>
-        </div>
-
-        {/* Desktop Video */}
-<motion.div
-  style={{ y: videoY }}
-  className="absolute inset-0 z-10 will-change-transform hidden md:flex items-center justify-center"
->
-  <video
-    src="https://limitless-framer-template.s3.us-east-005.backblazeb2.com/Abstract+Objects.mp4"
-    autoPlay
-    loop
-    muted
-    playsInline
-    preload="auto"
-    className="w-4/5 max-w-[1400px] h-auto object-cover rounded-xl shadow-lg"
-  />
-
-  {/* Scalkit Text */}
-  <motion.div
-    style={{ opacity: logoOpacity }}
-    className="absolute inset-0 flex items-center justify-center"
-  >
-    <h1 className="text-7xl md:text-8xl lg:text-9xl font-['Instrument_Serif'] tracking-tight">
-      <span className="text-white font-['Instrument_Serif']">
-        S<span className="italic font-['Instrument_Serif']">c</span>al
-      </span>
-      <span className="text-gray-300/70 font-['Instrument_Serif']">Kit</span>
-    </h1>
-  </motion.div>
-</motion.div>
-
-
-
-        {/* Overlay */}
-        <motion.div
-          style={{ opacity: overlayOpacity }}
-          className="absolute inset-0 bg-black/0 pointer-events-none z-20 hidden md:block"
-        />
-      </section>
-
-      {/* Mobile Video */}
-      <div className="relative block md:hidden w-full h-[40vh] overflow-hidden">
-        <video
-          src="https://limitless-framer-template.s3.us-east-005.backblazeb2.com/Abstract+Objects.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-5xl sm:text-6xl font-['Instrument_Serif'] tracking-tight">
-            <span className="text-white font-['Instrument_Serif']">
-              S<span className="italic font-['Instrument_Serif']">c</span>al
-            </span>
-            <span className="text-gray-300/70 font-['Instrument_Serif']">
-              Kit
-            </span>
+    <div className="relative w-full " id="home" ref={sectionRef} >
+        <section className="relative h-auto pt-48 xl:pt-0 xl:h-screen flex flex-col items-center justify-center text-center bg-black overflow-hidden px-4 hero_text">
+          {/* Hero Text */}
+          <h1 className="hero_text text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium text-white leading-snug mb-8 max-w-6xl mx-auto break-words whitespace-normal">
+            A Complete <span className="italic font-['Instrument_Serif']">System</span> for
+            Brands Ready to Scale.
           </h1>
-        </div>
-      </div>
+
+          <p className="text-xl sm:text-2xl text-gray-400 font-medium mb-12 max-w-5xl mx-auto hero_text">
+            Using our extensive knowledge of design, technology, and strategy,
+            <br />
+            we build brands that grow without limits.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <Link
+              to="/book-a-call"
+              className="bg-[#6214d9] hover:bg-[#6214d9]/90 text-white px-8 py-4 rounded-full text-lg transition-colors hero_text"
+            >
+              Book a Call
+            </Link>
+            <a
+              href="#services"
+              className="text-white hover:text-gray-300 px-8 py-4 text-lg transition-colors border border-gray-300/40 rounded-full hero_text"
+            >
+              View Services
+            </a>
+          </div>
+          </section>
+
+          <div className="h-full w-full flex justify-center">
+            <div className='hero_video_content block xl:h-[90%] xl:w-[90%] 2xl:h-[75%] 2xl:w-[75%] xl:absolute z-10  py-32 xl:py-0'>
+              <div className='relative'>
+                  <video src="https://limitless-framer-template.s3.us-east-005.backblazeb2.com/Abstract+Objects.mp4" className='opacity-100 rounded-2xl' autoPlay muted loop>test</video>
+                  {/* The text engraved in the video */}
+                  <div className='absolute inset-0 flex items-center justify-center'>
+                    <h1 className="hero_video_text text-white text-5xl xl:text-7xl opacity-0">Scalkit</h1>
+                  </div>
+              </div>
+            </div>
+          </div>
+
     </div>
+
+  
+
   );
 }
