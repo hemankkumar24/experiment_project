@@ -83,10 +83,15 @@ export function Hero() {
           <div className="h-full w-full flex justify-center">
             <div className='hero_video_content block xl:h-[90%] xl:w-[90%] 2xl:h-[75%] 2xl:w-[75%] xl:absolute z-10  py-32 xl:py-0'>
               <div className='relative'>
-                  <video src="https://limitless-framer-template.s3.us-east-005.backblazeb2.com/Abstract+Objects.mp4" className='opacity-100 rounded-2xl' autoPlay muted loop>test</video>
+                  <video src="https://limitless-framer-template.s3.us-east-005.backblazeb2.com/Abstract+Objects.mp4" className='opacity-100 rounded-2xl' autoPlay muted loop playsInline webkit-playsinline="true" disablePictureInPicture controls={false}>test</video>
                   {/* The text engraved in the video */}
-                  <div className='absolute inset-0 flex items-center justify-center'>
-                    <h1 className="hero_video_text text-white text-5xl xl:text-7xl opacity-0">Scalkit</h1>
+                  <div className='absolute hero_video_text text-7xl xl:text-9xl inset-0 flex items-center justify-center'>
+                    <span className="text-white hero_video_text opacity-0 font-['Instrument_Serif']">
+                      S<span className="italic hero_video_text font-['Instrument_Serif'] opacity-0">c</span>al
+                    </span>
+                    <span className="text-gray-300/70 hero_video_text opacity-0 font-['Instrument_Serif']">
+                      Kit
+                    </span>
                   </div>
               </div>
             </div>
